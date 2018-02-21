@@ -61,7 +61,7 @@ The following environment variables are supported:
    be built and cached.  Note, `WORK_DIR` stores a complete copy of the target
    system for each build stage, amounting to tens of gigabytes in the case of
    Raspbian.
-   
+
    **CAUTION**: If your working directory is on an NTFS partition you probably won't be able to build. Make sure this is a proper Linux filesystem.
 
  * `DEPLOY_DIR`  (Default: `"$BASE_DIR/deploy"`)
@@ -239,3 +239,13 @@ follows:
  * Once you're happy with the image you can remove the SKIP_IMAGES files and
    export your image to test
 
+## Troubleshooting:
+If you encounter an error like the following:
+```
+/usr/sbin/debootstrap: 1368: /usr/sbin/debootstrap: cannot create /path/to/work/image/stage0/rootfs/test-dev-null: Permission denied
+```
+This can be caused by insufficient mount flags, especially if your home folder is encrypted. You can sove this by running the next command (only include the `-i` flag if your home folder is indeed encrypted):
+```
+$ sudo mount -i -o remount,exec,dev /home/user
+```
+where `/home/user` is the (encrypted) home directory. [Source](https://superuser.com/a/1136972)
