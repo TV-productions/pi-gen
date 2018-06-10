@@ -140,6 +140,9 @@ export WORK_DIR=${WORK_DIR:-"${BASE_DIR}/work/${IMG_DATE}-${IMG_NAME}"}
 export DEPLOY_DIR=${DEPLOY_DIR:-"${BASE_DIR}/deploy"}
 export LOG_FILE="${WORK_DIR}/build.log"
 
+export DEFAULT_USER=${DEFAULT_USER:-"pi"}
+export DEFAULT_PASS=${DEFAULT_PASS:-"raspberry"}
+
 export CLEAN
 export IMG_NAME
 export APT_PROXY
